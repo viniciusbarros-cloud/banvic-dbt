@@ -1,12 +1,14 @@
 WITH 
-    date_spine AS (
+    date_spine AS 
+    (
     {{ 
-        dbt_utils.date_spine(
+        dbt_utils.date_spine
+    (
         datepart="day",
         start_date="cast('2020-01-01' as date)",
         end_date="cast('2030-01-01' as date)"
-        )
-    }}
+    )
+    }} 
 
     )
 
@@ -15,7 +17,7 @@ WITH
 
       SELECT 
               ROW_NUMBER() OVER (ORDER BY date_day) as pk_data
-              , CAST(date_day AS DATE) AS dt_data
+              , CAST(date_day AS date) AS data_completa
               , EXTRACT(day FROM date_day) as dia
               , EXTRACT(month FROM date_day) as mes
               , EXTRACT(year FROM date_day) as ano
